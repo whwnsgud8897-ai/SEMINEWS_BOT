@@ -1,0 +1,17 @@
+name: Daily News Crawler
+
+on:
+  schedule:
+    - cron: 0 23 * * *
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: 3.10
+      - run: pip install requests beautifulsoup4 lxml
+      - run: python main.py
